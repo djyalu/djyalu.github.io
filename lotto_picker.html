@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>복권 번호 자동 추첨기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+    }
+    .result {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+<script type="text/javascript" nonce="399b68e364574f9bb291e51a0ca" src="//local.adguard.org?ts=1746410452860&amp;type=content-script&amp;dmn=download.mail.naver.com&amp;url=https%3A%2F%2Fdownload.mail.naver.com%2Ffile%2Fdownload%2Feach%2F%3FattachType%3Dnormal%26mailSN%3D179641%26attachIndex%3D2%26virus%3D1%26domain%3Dmail.naver.com&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="399b68e364574f9bb291e51a0ca" src="//local.adguard.org?ts=1746410452860&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+<body>
+
+  <h1>🎯 복권 번호 자동 추첨기 🎯</h1>
+  <button onclick="generateLottoNumbers()">번호 뽑기</button>
+
+  <div id="results" class="result"></div>
+
+  <script>
+    function generateSingleSet() {
+      let numbers = [];
+      while (numbers.length < 6) {
+        let num = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(num)) {
+          numbers.push(num);
+        }
+      }
+      return numbers.sort((a, b) => a - b);
+    }
+
+    function generateLottoNumbers() {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ""; // 초기화
+
+      for (let i = 1; i <= 5; i++) {
+        const set = generateSingleSet();
+        const setText = `조합 ${i}: ${set.join(', ')}`;
+        const p = document.createElement('p');
+        p.textContent = setText;
+        resultsDiv.appendChild(p);
+      }
+    }
+  </script>
+
+</body>
+</html>
